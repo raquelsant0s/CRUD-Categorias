@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> Nova Categoria </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="init()" link="black" vlink="black" alink="black" class="p-3 m-0 border-0 bd-example m-0 border-0">
+
+    <header>
+        <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling" >
+            <img src="img/barra-de-menu.png" alt="menu" width="60" height="60">
+        </button>
+    
+        <div class="offcanvas offcanvas-start" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel" >
+            <div class="offcanvas-header" style="background-color: orangered;">
+                <h5 class="offcanvas-title" id="offcanvasScrollingLabel" style="color: white;"> MENU </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" style="background-color: white;"></button>
+            </div>
+            <div class="offcanvas-body">
+                <p><strong> PERFIL </strong></p>
+                <p></p></br>
+                <p><strong><a href="index.html"> NOVA DESPESA </a> </strong></p>
+                <p></p></br>
+                <p><strong> SOBRE NÓS </strong></p>
+            </div>
+        </div>
+    </header>
+
+    <div class="d-flex justify-content-around">
+        <img src="img/leaf.png" alt="Logo" width="50" height="50">
+    </div>
+
+    <figure class="text-center"> 
+        <p class="h1"> Categorias </p>
+    </figure>
+
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        
+        <button type="button" class="btn btn-warning " data-bs-toggle="modal" data-bs-target="#exampleModal" >
+            
+            <strong> + Nova Categoria </strong>
+            
+        </button>
+
+    </div>
+
+    
+
+    <!-- MODAL CADASTRAR -->
+  
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-warning" >
+          <h1 class="modal-title fs-5" id="exampleModalLabel"> Cadastrar Categoria </h1>
+        </div>
+        <div class="modal-body">
+            <form id="form-categoria">
+                <!-- <div class="form-group row">
+                    <div class="col-sm-4">
+                        <label for="inputId">Id</label>
+                        <input type="text" class="form-control" id="inputId" placeholder="ID" disabled>
+                    </div>
+                </div> -->
+    
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <label for="inputIdUsuario"> Id Usuário </label>
+                        <input type="text" class="form-control" id="inputIdUsuario" required placeholder="usuario" >
+                    </div>
+                </div>
+    
+                
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <label for="inputNome">Nome (*) </label>
+                        <input type="text" class="form-control" id="inputNome" required placeholder="Informe o nome da categoria">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-warning" id="btnInsert"> Cadastrar </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE EDITAR -->
+
+  <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-warning" >
+          <h1 class="modal-title fs-5" id="exampleModalLabel"> Alterar Categoria </h1>
+        </div>
+        <div class="modal-body">
+            <form id="form-categoria">
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <label for="inputId">Id</label>
+                        <input type="text" class="form-control" id="inputId1" placeholder="ID" disabled>
+                    </div>
+                </div>
+    
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <!-- <label for="inputIdUsuario"> Id Usuário </label> -->
+                        <input type="text" class="form-control" id="inputIdUsuario1" required placeholder="usuario" hidden>
+                    </div>
+                </div>
+    
+                
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <label for="inputNome">Nome </label>
+                        <input type="text" class="form-control" id="inputNome1" required placeholder="Informe o nome da categoria">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-warning" id="btnUpdate"> Atualizar </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE EXCLUIR -->
+
+  <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-warning" >
+          <h1 class="modal-title fs-5" id="exampleModalLabel"> Deletar Categoria </h1>
+        </div>
+        <div class="modal-body">
+
+          <p> Você deseja excluir a categoria: </p> 
+          <input type="text" class="form-control" id="inputNome2" required placeholder="Informe o nome da categoria" disabled>
+
+          <!-- <p> ID: </p> -->
+          <input type="text" class="form-control" id="inputId2" placeholder="ID" disabled hidden>
+
+          <!-- <p> ID do Usuario : </p> -->
+          <input type="text" class="form-control" id="inputIdUsuario2" required placeholder="usuario" disabled hidden>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Fechar </button>
+          <button type="button" class="btn btn-warning" id="btnDelete"> Deletar </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    
+    
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <table id="grid-categoria" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Id Usuario</th>
+                    </tr>
+                </thead>
+                <tbody id="table-categoria">
+                    <tr>
+                        <td scope="row"></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+    <div class="row">
+        <div id="msg" class="col-sm-10 offset-sm-1 ">
+            <!--<div class="alert alert-warning">Contato não encontrado.</div>-->
+        </div>
+    </div>
+
+    <script src="comandos.js"></script>
+    <script>
+
+        
+        var db = []
+        readCategoria(dados => {
+            db = dados;
+            exibeCategoria()
+        });
+        
+        
+        function exibeCategoria() {
+            tableCategoria = document.getElementById("table-categoria");
+
+            // Remove todas as linhas do corpo da tabela
+            tableCategoria.innerHTML = "";
+
+            readCategoria (dados => {
+                // Popula a tabela com os registros do banco de dados
+                for (i = 0; i < dados.length; i++) {
+                    let categoria = dados[i];    
+                    tableCategoria.innerHTML += `<tr><td scope="row" class="catid">${categoria.id}</td>
+                                                    <td class="catnome">${categoria.nome}</td>
+                                                    <td class="catusuario">${categoria.idusuario}</td>
+                                                    <td>
+                                                        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal2" style="border: 0; background-color: transparent;"><img src="img/escrever.png" alt="editar" width="25" height="25" onclick="populateModal('edit','${categoria.id}','${categoria.nome}','${categoria.idusuario}')"></button>
+                                                        <button class="btndelete" data-bs-toggle="modal" data-bs-target="#exampleModal3" type="button" style="border: 0; background-color: transparent;" ><img src="img/excluir.png" alt="editar" width="25" height="25" onclick="populateModal('delete','${categoria.id}','${categoria.nome}','${categoria.idusuario}')" ></button>
+                                                    </td>
+                                                </tr>`;
+
+                }
+            })
+        }
+
+        // Função para popular o modal de edição
+        function populateModal(action,id,nome,idusuario) {
+            let inputId,inputIdUsuario,inputNome;
+
+            if(action == "edit") {
+                inputId = document.getElementById('inputId1');
+                inputIdUsuario = document.getElementById('inputIdUsuario1');
+                inputNome = document.getElementById('inputNome1');
+            } 
+            
+            else {
+                inputId = document.getElementById('inputId2');
+                inputIdUsuario = document.getElementById('inputIdUsuario2');
+                inputNome = document.getElementById('inputNome2');
+            }
+
+            inputId.value = id
+            inputIdUsuario.value = idusuario
+            inputNome.value = nome
+        }
+
+        // Trata o click do botão Excluir
+        function deleteCat(id, nome) {
+
+            var resultado = confirm("Deseja realmente excluir a categoria: " + nome + " ?")
+
+            if (resultado == true) {
+                deleteCategoria(parseInt(id), exibeCategoria);
+            }
+
+        }
+
+
+        function init() {
+
+            formCategoria = document.getElementById("form-categoria");
+
+            btnInsert = document.getElementById("btnInsert");
+            btnInsert.addEventListener ('click', function () {
+
+                if (!formCategoria.checkValidity()) {
+                    displayMessage("Preencha o formulário corretamente.");
+                    return;
+                }
+
+                let campoNome = document.getElementById ('inputNome').value;
+                let campoIdUsuario = document.getElementById ('inputIdUsuario').value;
+
+                let categoria = { nome: campoNome, 
+                    idusuario: campoIdUsuario           
+                };
+
+                createCategoria(categoria, exibeCategoria);
+
+                // Fecha o modal
+                //document.querySelector("#exampleModal [data-bs-dismiss=modal]").click() 
+
+                formCategoria.reset()
+            });
+
+
+            btnUpdate = document.getElementById("btnUpdate");
+            btnUpdate.addEventListener ('click', function () {
+
+                let campoId = document.getElementById("inputId1").value;
+
+                let campoNome = document.getElementById('inputNome1').value;
+
+                let campoIdUsuario = document.getElementById('inputIdUsuario1').value;
+
+                if(campoNome == ""){
+                    displayMessage("Preencha o formulário corretamente.");
+                } else{
+
+                    let categoria = { nome: campoNome, 
+                    idusuario: campoIdUsuario
+                    };
+
+                    updateCategoria(parseInt(campoId), categoria, exibeCategoria);
+                    
+                }
+
+                
+
+                // Fecha o modal
+                //document.querySelector("#exampleModal2 [data-bs-dismiss=modal]").click() 
+
+                formCategoria.reset()
+            });
+
+
+             // Trata o click do botão Deletar
+            btnDelete = document.getElementById("btnDelete");
+            btnDelete.addEventListener ('click', function () {
+
+
+                //Obtem os valores dos campos do formulário
+                let campoId = document.getElementById("inputId2").value;
+                let campoNome = document.getElementById('inputNome2').value;
+                let campoIdUsuario = document.getElementById('inputIdUsuario2').value;
+                deleteCategoria(parseInt(campoId), exibeCategoria);
+
+                // Fecha o modal
+                document.querySelector("#exampleModal3 [data-bs-dismiss=modal]").click() 
+                // Limpa o formulario
+                formCategoria.reset()
+            });
+
+
+        
+            // Trata o click do botão Listar Contatos
+            btnClear = document.getElementById('btnClear');
+            // btnClear.addEventListener ('click', function () {                
+            //     formCategoria.reset()
+            // });
+            
+            // Oculta a mensagem de aviso após alguns 5 segundos
+            msg = document.getElementById('msg');
+            // msg.addEventListener ("DOMSubtreeModified", function (e) {
+            //     if (e.target.innerHTML == "") return;
+            //     setTimeout (function () {
+            //         alert = msg.getElementsByClassName("alert");
+            //         alert[0].remove();
+            //     }, 5000);
+            // })
+
+            // Preenche o formulário quando o usuario clicar em uma linha da tabela 
+            gridCategoria = document.getElementById("grid-categoria");
+            gridCategoria.addEventListener('click', function (e) {
+                if (e.target.tagName == "TD") { 
+
+                    // Obtem as colunas da linha selecionada na tabela
+                    let linhaCategoria = e.target.parentNode;
+                    colunas = linhaCategoria.querySelectorAll("td");
+                    
+                    // Preenche os campos do formulário com os dados da linha selecionada na tabela
+                    document.getElementById ('inputId').value = colunas[0].innerText;
+                    document.getElementById ('inputNome').value = colunas[1].innerText;
+                    document.getElementById ('inputIdUsuario').value = colunas[2].innerText;
+
+                }
+            });
+
+            
+
+            // exibeCategoria();   
+        } 
+    </script>
+</body>
+
+</html>
+<!-- <td><a href="#" class="btn"></a></td> -->
